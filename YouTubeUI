@@ -1,13 +1,11 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license // No se si quitar esto o no
  */
 
-package com.uacj.youtube;
+package com.uacj.youtube; //Importante (creo que por esta cosa necesitaremos hacer lo de integrar GitHub en NetBeans)
 
-/**
- *
- * @author victor
- */
+//......//
+
 import javax.swing.*;
 import java.awt.*;
 
