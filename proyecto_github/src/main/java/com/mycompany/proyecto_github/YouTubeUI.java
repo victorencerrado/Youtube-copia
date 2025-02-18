@@ -1,3 +1,5 @@
+//Esto es el JFrame (el esqueleto)
+
 package com.mycompany.proyecto_github;
 
 import javax.swing.*;
