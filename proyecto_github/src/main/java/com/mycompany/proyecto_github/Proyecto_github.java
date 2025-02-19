@@ -127,4 +127,8 @@ public class Proyecto_github extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
 }
+
+//topPanel.add(logoLabel, BorderLayout.WEST);
+  //  topPanel.add(searchPanel, BorderLayout.CENTER);
+
 // fin de codigo
