@@ -132,3 +132,10 @@ public class Proyecto_github extends javax.swing.JFrame {
   //  topPanel.add(searchPanel, BorderLayout.CENTER);
 
 // fin de codigo
+
+//Integrantes 
+//Victor Manuel Encerrado Solares - 216872
+//Axel Gamaliel Aragon Garcia - 215926
+//Samuel Morgado Guatemala - 215551
+//Dante Uriel Ramirez Marquez - 227481
+//Luis Yair Rodriguez Recio - 215728
