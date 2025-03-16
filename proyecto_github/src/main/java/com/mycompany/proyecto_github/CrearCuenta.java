@@ -6,7 +6,7 @@ package com.mycompany.proyecto_github;
 
 /**
  *
- * @author vicen
+ * @author victor 
  */
 public class CrearCuenta extends javax.swing.JFrame {
 
@@ -15,9 +15,11 @@ public class CrearCuenta extends javax.swing.JFrame {
      */
     public CrearCuenta() {
         initComponents();
-        //
+        pack(); // Ajusta el tamaño de la ventana según los componentes
+        setLocationRelativeTo(null); // Centra la ventana en la pantalla
     }
-
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -27,31 +29,74 @@ public class CrearCuenta extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        Fondo = new javax.swing.JPanel();
+        FondoContainer = new javax.swing.JPanel();
+        BarraEmail = new javax.swing.JTextField();
+        BotonSiguiente = new javax.swing.JButton();
+        BarraContrasena = new javax.swing.JPasswordField();
+        ContainerCrearCuenta = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setText("jLabel1");
+        Fondo.setBackground(new java.awt.Color(51, 51, 51));
+        Fondo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(165, 165, 165)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(108, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(108, 108, 108)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(43, Short.MAX_VALUE))
-        );
+        FondoContainer.setBackground(new java.awt.Color(51, 51, 51));
+        FondoContainer.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        BarraEmail.setBackground(new java.awt.Color(18, 18, 18));
+        BarraEmail.setFont(new java.awt.Font("DialogInput", 1, 18)); // NOI18N
+        BarraEmail.setForeground(new java.awt.Color(255, 255, 255));
+        BarraEmail.setText("Email");
+        BarraEmail.setBorder(null);
+        BarraEmail.setCaretColor(new java.awt.Color(255, 255, 255));
+        BarraEmail.setDisabledTextColor(new java.awt.Color(255, 255, 255));
+        BarraEmail.setName(""); // NOI18N
+        FondoContainer.add(BarraEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 169, 560, 40));
+
+        BotonSiguiente.setBackground(new java.awt.Color(155, 202, 255));
+        BotonSiguiente.setFont(new java.awt.Font("Dialog", 0, 15)); // NOI18N
+        BotonSiguiente.setForeground(new java.awt.Color(0, 0, 0));
+        BotonSiguiente.setText("Siguiente");
+        BotonSiguiente.setBorder(null);
+        BotonSiguiente.setBorderPainted(false);
+        BotonSiguiente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BotonSiguiente.setDefaultCapable(false);
+        BotonSiguiente.setFocusPainted(false);
+        BotonSiguiente.setRequestFocusEnabled(false);
+        BotonSiguiente.setRolloverEnabled(false);
+        BotonSiguiente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonSiguienteActionPerformed(evt);
+            }
+        });
+        FondoContainer.add(BotonSiguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 370, 90, 40));
+
+        BarraContrasena.setBackground(new java.awt.Color(18, 18, 18));
+        BarraContrasena.setFont(new java.awt.Font("DialogInput", 1, 18)); // NOI18N
+        BarraContrasena.setForeground(new java.awt.Color(255, 255, 255));
+        BarraContrasena.setText("password");
+        BarraContrasena.setToolTipText("");
+        BarraContrasena.setBorder(null);
+        BarraContrasena.setCaretColor(new java.awt.Color(255, 255, 255));
+        FondoContainer.add(BarraContrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 240, 560, 40));
+
+        ContainerCrearCuenta.setFont(new java.awt.Font("Source Code Pro Semibold", 0, 13)); // NOI18N
+        ContainerCrearCuenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Login.png"))); // NOI18N
+        FondoContainer.add(ContainerCrearCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 1210, 460));
+
+        Fondo.add(FondoContainer, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 290, 1220, 460));
+
+        getContentPane().add(Fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1920, 1080));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void BotonSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonSiguienteActionPerformed
+    // Configurar boton para que haga un insert o un consult en la base de datos y que pueda ingresar los datos ! ! !
+        
+    }//GEN-LAST:event_BotonSiguienteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -89,6 +134,11 @@ public class CrearCuenta extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPasswordField BarraContrasena;
+    private javax.swing.JTextField BarraEmail;
+    private javax.swing.JButton BotonSiguiente;
+    private javax.swing.JLabel ContainerCrearCuenta;
+    private javax.swing.JPanel Fondo;
+    private javax.swing.JPanel FondoContainer;
     // End of variables declaration//GEN-END:variables
 }
