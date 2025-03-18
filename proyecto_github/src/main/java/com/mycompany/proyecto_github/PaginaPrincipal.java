@@ -5,7 +5,6 @@
 package com.mycompany.proyecto_github;
 
 import com.formdev.flatlaf.FlatDarkLaf;
-import com.formdev.flatlaf.FlatLightLaf;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
@@ -28,6 +27,7 @@ public class PaginaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLayeredPane1 = new javax.swing.JLayeredPane();
         Fondo = new javax.swing.JPanel();
         TopMenu = new javax.swing.JPanel();
         BarraNavegacionScrollPane = new javax.swing.JScrollPane();
@@ -59,10 +59,14 @@ public class PaginaPrincipal extends javax.swing.JFrame {
         BotonAcceder = new javax.swing.JButton();
         BotonTresPuntos = new javax.swing.JButton();
         BotonYouTubeLogo = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        BotonTresBarras = new javax.swing.JButton();
         ImagenTopMenu = new javax.swing.JLabel();
+        BarraLateral = new javax.swing.JPanel();
+        TresBarrasBarraLateral = new javax.swing.JButton();
+        ImagenBarraLateral = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Fondo.setBackground(new java.awt.Color(0, 0, 0));
@@ -203,19 +207,19 @@ public class PaginaPrincipal extends javax.swing.JFrame {
         BotonBuscar.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/BotonBuscarPresionado.png"))); // NOI18N
         BotonBuscar.setRequestFocusEnabled(false);
         BotonBuscar.setRolloverEnabled(false);
-        TopMenu.add(BotonBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1220, 20, 60, 30));
+        TopMenu.add(BotonBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1220, 10, 60, 30));
 
         TextoBuscar.setBackground(new java.awt.Color(18, 18, 18));
         TextoBuscar.setForeground(new java.awt.Color(255, 255, 255));
         TextoBuscar.setText("Buscar");
         TextoBuscar.setBorder(null);
-        TopMenu.add(TextoBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 20, 500, 30));
+        TopMenu.add(TextoBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 10, 500, 30));
 
         BotonAcceder.setIcon(new javax.swing.ImageIcon(getClass().getResource("/BotonAcceder.png"))); // NOI18N
         BotonAcceder.setContentAreaFilled(false);
         BotonAcceder.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         BotonAcceder.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/BotonAccederPresionado.png"))); // NOI18N
-        TopMenu.add(BotonAcceder, new org.netbeans.lib.awtextra.AbsoluteConstraints(1770, 10, 140, 50));
+        TopMenu.add(BotonAcceder, new org.netbeans.lib.awtextra.AbsoluteConstraints(1770, 0, 140, 60));
 
         BotonTresPuntos.setContentAreaFilled(false);
         BotonTresPuntos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -225,22 +229,80 @@ public class PaginaPrincipal extends javax.swing.JFrame {
         BotonYouTubeLogo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         TopMenu.add(BotonYouTubeLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 20, 100, 30));
 
-        jButton1.setBackground(new java.awt.Color(33, 33, 33));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/TresBarras.png"))); // NOI18N
-        jButton1.setBorderPainted(false);
-        jButton1.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/TresBarrasPresionado.png"))); // NOI18N
-        TopMenu.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 30, 30));
+        BotonTresBarras.setBackground(new java.awt.Color(33, 33, 33));
+        BotonTresBarras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/TresBarras.png"))); // NOI18N
+        BotonTresBarras.setBorderPainted(false);
+        BotonTresBarras.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BotonTresBarras.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/TresBarrasPresionado.png"))); // NOI18N
+        BotonTresBarras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonTresBarrasActionPerformed(evt);
+            }
+        });
+        TopMenu.add(BotonTresBarras, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 30, 40));
 
         ImagenTopMenu.setBackground(new java.awt.Color(33, 33, 33));
         ImagenTopMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Top Menu.png"))); // NOI18N
-        TopMenu.add(ImagenTopMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1920, 130));
+        TopMenu.add(ImagenTopMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1920, -1));
 
         Fondo.add(TopMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1920, 120));
 
-        getContentPane().add(Fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1920, 1080));
+        jLayeredPane1.add(Fondo);
+        Fondo.setBounds(0, 0, 1920, 1080);
+
+        BarraLateral.setBackground(new java.awt.Color(33, 33, 33));
+        BarraLateral.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        TresBarrasBarraLateral.setIcon(new javax.swing.ImageIcon(getClass().getResource("/TresBarras.png"))); // NOI18N
+        TresBarrasBarraLateral.setBorderPainted(false);
+        TresBarrasBarraLateral.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        TresBarrasBarraLateral.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/TresBarrasPresionado.png"))); // NOI18N
+        TresBarrasBarraLateral.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TresBarrasBarraLateralActionPerformed(evt);
+            }
+        });
+        BarraLateral.add(TresBarrasBarraLateral, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 30, 40));
+
+        ImagenBarraLateral.setIcon(new javax.swing.ImageIcon(getClass().getResource("/BarraLateral.png"))); // NOI18N
+        BarraLateral.add(ImagenBarraLateral, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 230, 1080));
+
+        jLayeredPane1.setLayer(BarraLateral, javax.swing.JLayeredPane.PALETTE_LAYER);
+        jLayeredPane1.add(BarraLateral);
+        BarraLateral.setBounds(0, 0, 240, 1080);
+
+        getContentPane().add(jLayeredPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1920, 1080));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void BotonTresBarrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonTresBarrasActionPerformed
+        // TODO add your handling code here:
+        int barraLateralX = BarraLateral.getX();
+    if (barraLateralX < 0) {
+        // Mostrar la barra lateral
+        BarraLateral.setLocation(0, BarraLateral.getY());
+    } else {
+        // Ocultar la barra lateral (asumiendo un ancho de 200)
+        BarraLateral.setLocation(-250, BarraLateral.getY());
+    }
+    jLayeredPane1.revalidate();
+    jLayeredPane1.repaint();
+    }//GEN-LAST:event_BotonTresBarrasActionPerformed
+
+    private void TresBarrasBarraLateralActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TresBarrasBarraLateralActionPerformed
+        // TODO add your handling code here:
+                int barraLateralX = BarraLateral.getX();
+    if (barraLateralX < 0) {
+        // Mostrar la barra lateral
+        BarraLateral.setLocation(0, BarraLateral.getY());
+    } else {
+        // Ocultar la barra lateral (asumiendo un ancho de 200)
+        BarraLateral.setLocation(-250, BarraLateral.getY());
+    }
+    jLayeredPane1.revalidate();
+    jLayeredPane1.repaint();
+    }//GEN-LAST:event_TresBarrasBarraLateralActionPerformed
 
     /**
      * @param args the command line arguments
@@ -270,17 +332,21 @@ public class PaginaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel BarraLateral;
     private javax.swing.JPanel BarraNavegacionPanel;
     private javax.swing.JScrollPane BarraNavegacionScrollPane;
     private javax.swing.JButton BotonAcceder;
     private javax.swing.JButton BotonBuscar;
+    private javax.swing.JButton BotonTresBarras;
     private javax.swing.JButton BotonTresPuntos;
     private javax.swing.JButton BotonYouTubeLogo;
     private javax.swing.JPanel Fondo;
+    private javax.swing.JLabel ImagenBarraLateral;
     private javax.swing.JLabel ImagenTopMenu;
     private javax.swing.JTextField TextoBuscar;
     private javax.swing.JPanel TopMenu;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton TresBarrasBarraLateral;
+    private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JToggleButton jToggleButton10;
     private javax.swing.JToggleButton jToggleButton11;
