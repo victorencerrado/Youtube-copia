@@ -4,28 +4,19 @@
  */
 package com.mycompany.proyecto_github;
 
-import java.awt.Image;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
+import com.formdev.flatlaf.FlatDarkLaf;
+import com.formdev.flatlaf.FlatLightLaf;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 /**
  *
- * @author vicen
+ * @author Victor Encerrado
  */
 public class PaginaPrincipal extends javax.swing.JFrame {
 
-    private final JButton L_lupa = new JButton();
-
-    /**
-     * Creates new form PaginaPrincipal
-     */
     public PaginaPrincipal() {
         initComponents();
-        String url = "/com/mycompany/proyecto_github/imagenes/lupa.png";
-        ImageIcon im = new ImageIcon(url);
-        Image im_escaladado = im.getImage().getScaledInstance(300, 300, Image.SCALE_DEFAULT);
-        ImageIcon icono_escala = new ImageIcon(im_escaladado);
-        this.L_lupa.setIcon(icono_escala);
     }
 
     /**
@@ -37,29 +28,216 @@ public class PaginaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        Fondo = new javax.swing.JPanel();
+        TopMenu = new javax.swing.JPanel();
+        BarraNavegacionScrollPane = new javax.swing.JScrollPane();
+        BarraNavegacionPanel = new javax.swing.JPanel();
+        jToggleButton1 = new javax.swing.JToggleButton();
+        jToggleButton2 = new javax.swing.JToggleButton();
+        jToggleButton3 = new javax.swing.JToggleButton();
+        jToggleButton4 = new javax.swing.JToggleButton();
+        jToggleButton5 = new javax.swing.JToggleButton();
+        jToggleButton6 = new javax.swing.JToggleButton();
+        jToggleButton7 = new javax.swing.JToggleButton();
+        jToggleButton8 = new javax.swing.JToggleButton();
+        jToggleButton9 = new javax.swing.JToggleButton();
+        jToggleButton10 = new javax.swing.JToggleButton();
+        jToggleButton11 = new javax.swing.JToggleButton();
+        jToggleButton12 = new javax.swing.JToggleButton();
+        jToggleButton13 = new javax.swing.JToggleButton();
+        jToggleButton14 = new javax.swing.JToggleButton();
+        jToggleButton15 = new javax.swing.JToggleButton();
+        jToggleButton16 = new javax.swing.JToggleButton();
+        jToggleButton17 = new javax.swing.JToggleButton();
+        jToggleButton18 = new javax.swing.JToggleButton();
+        jToggleButton19 = new javax.swing.JToggleButton();
+        jToggleButton20 = new javax.swing.JToggleButton();
+        jToggleButton21 = new javax.swing.JToggleButton();
+        jToggleButton22 = new javax.swing.JToggleButton();
+        BotonBuscar = new javax.swing.JButton();
+        TextoBuscar = new javax.swing.JTextField();
+        BotonAcceder = new javax.swing.JButton();
+        BotonTresPuntos = new javax.swing.JButton();
+        BotonYouTubeLogo = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        ImagenTopMenu = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/proyecto_github/imagenes/lupa.png"))); // NOI18N
-        jButton1.setText("jButton1");
+        Fondo.setBackground(new java.awt.Color(0, 0, 0));
+        Fondo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(511, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(158, 158, 158))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(464, Short.MAX_VALUE))
-        );
+        TopMenu.setBackground(new java.awt.Color(33, 33, 33));
+        TopMenu.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        BarraNavegacionScrollPane.setBackground(new java.awt.Color(33, 33, 33));
+        BarraNavegacionScrollPane.setForeground(new java.awt.Color(255, 255, 255));
+        BarraNavegacionScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+        BarraNavegacionScrollPane.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+
+        BarraNavegacionPanel.setBackground(new java.awt.Color(33, 33, 33));
+        BarraNavegacionPanel.setForeground(new java.awt.Color(255, 255, 255));
+        BarraNavegacionPanel.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
+
+        jToggleButton1.setBackground(new java.awt.Color(51, 51, 51));
+        jToggleButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jToggleButton1.setSelected(true);
+        jToggleButton1.setText("Todos");
+        jToggleButton1.setMargin(new java.awt.Insets(5, 14, 5, 14));
+        BarraNavegacionPanel.add(jToggleButton1);
+
+        jToggleButton2.setBackground(new java.awt.Color(51, 51, 51));
+        jToggleButton2.setText("Musica");
+        jToggleButton2.setMargin(new java.awt.Insets(5, 14, 5, 14));
+        BarraNavegacionPanel.add(jToggleButton2);
+
+        jToggleButton3.setBackground(new java.awt.Color(51, 51, 51));
+        jToggleButton3.setText("Documentales");
+        jToggleButton3.setMargin(new java.awt.Insets(5, 14, 5, 14));
+        BarraNavegacionPanel.add(jToggleButton3);
+
+        jToggleButton4.setBackground(new java.awt.Color(51, 51, 51));
+        jToggleButton4.setText("Videojuegos");
+        jToggleButton4.setMargin(new java.awt.Insets(5, 14, 5, 14));
+        BarraNavegacionPanel.add(jToggleButton4);
+
+        jToggleButton5.setBackground(new java.awt.Color(51, 51, 51));
+        jToggleButton5.setText("Noticias");
+        jToggleButton5.setMargin(new java.awt.Insets(5, 14, 5, 14));
+        BarraNavegacionPanel.add(jToggleButton5);
+
+        jToggleButton6.setBackground(new java.awt.Color(51, 51, 51));
+        jToggleButton6.setText("Podcasts");
+        jToggleButton6.setMargin(new java.awt.Insets(5, 14, 5, 14));
+        BarraNavegacionPanel.add(jToggleButton6);
+
+        jToggleButton7.setBackground(new java.awt.Color(51, 51, 51));
+        jToggleButton7.setText("Mixes");
+        jToggleButton7.setMargin(new java.awt.Insets(5, 14, 5, 14));
+        BarraNavegacionPanel.add(jToggleButton7);
+
+        jToggleButton8.setBackground(new java.awt.Color(51, 51, 51));
+        jToggleButton8.setText("Audio Comentario");
+        jToggleButton8.setMargin(new java.awt.Insets(5, 14, 5, 14));
+        BarraNavegacionPanel.add(jToggleButton8);
+
+        jToggleButton9.setBackground(new java.awt.Color(51, 51, 51));
+        jToggleButton9.setText("Listas de reproducción");
+        jToggleButton9.setMargin(new java.awt.Insets(5, 14, 5, 14));
+        BarraNavegacionPanel.add(jToggleButton9);
+
+        jToggleButton10.setBackground(new java.awt.Color(51, 51, 51));
+        jToggleButton10.setText("Subidos recientemente");
+        jToggleButton10.setMargin(new java.awt.Insets(5, 14, 5, 14));
+        BarraNavegacionPanel.add(jToggleButton10);
+
+        jToggleButton11.setBackground(new java.awt.Color(51, 51, 51));
+        jToggleButton11.setText("Aviones");
+        jToggleButton11.setMargin(new java.awt.Insets(5, 14, 5, 14));
+        BarraNavegacionPanel.add(jToggleButton11);
+
+        jToggleButton12.setBackground(new java.awt.Color(51, 51, 51));
+        jToggleButton12.setText("Speedrun");
+        jToggleButton12.setMargin(new java.awt.Insets(5, 14, 5, 14));
+        BarraNavegacionPanel.add(jToggleButton12);
+
+        jToggleButton13.setBackground(new java.awt.Color(51, 51, 51));
+        jToggleButton13.setText("Deportes");
+        jToggleButton13.setMargin(new java.awt.Insets(5, 14, 5, 14));
+        BarraNavegacionPanel.add(jToggleButton13);
+
+        jToggleButton14.setBackground(new java.awt.Color(51, 51, 51));
+        jToggleButton14.setText("Novedad para ti");
+        jToggleButton14.setMargin(new java.awt.Insets(5, 14, 5, 14));
+        BarraNavegacionPanel.add(jToggleButton14);
+
+        jToggleButton15.setBackground(new java.awt.Color(51, 51, 51));
+        jToggleButton15.setText("En Vivo");
+        jToggleButton15.setMargin(new java.awt.Insets(5, 14, 5, 14));
+        BarraNavegacionPanel.add(jToggleButton15);
+
+        jToggleButton16.setBackground(new java.awt.Color(51, 51, 51));
+        jToggleButton16.setText("Historia");
+        jToggleButton16.setMargin(new java.awt.Insets(5, 14, 5, 14));
+        BarraNavegacionPanel.add(jToggleButton16);
+
+        jToggleButton17.setBackground(new java.awt.Color(51, 51, 51));
+        jToggleButton17.setText("Militar");
+        jToggleButton17.setMargin(new java.awt.Insets(5, 14, 5, 14));
+        BarraNavegacionPanel.add(jToggleButton17);
+
+        jToggleButton18.setBackground(new java.awt.Color(51, 51, 51));
+        jToggleButton18.setText("Parodias");
+        jToggleButton18.setMargin(new java.awt.Insets(5, 14, 5, 14));
+        BarraNavegacionPanel.add(jToggleButton18);
+
+        jToggleButton19.setBackground(new java.awt.Color(51, 51, 51));
+        jToggleButton19.setText("Esports");
+        jToggleButton19.setMargin(new java.awt.Insets(5, 14, 5, 14));
+        BarraNavegacionPanel.add(jToggleButton19);
+
+        jToggleButton20.setBackground(new java.awt.Color(51, 51, 51));
+        jToggleButton20.setText("Carreras");
+        jToggleButton20.setMargin(new java.awt.Insets(5, 14, 5, 14));
+        BarraNavegacionPanel.add(jToggleButton20);
+
+        jToggleButton21.setBackground(new java.awt.Color(51, 51, 51));
+        jToggleButton21.setText("Nintendo");
+        jToggleButton21.setMargin(new java.awt.Insets(5, 14, 5, 14));
+        BarraNavegacionPanel.add(jToggleButton21);
+
+        jToggleButton22.setBackground(new java.awt.Color(51, 51, 51));
+        jToggleButton22.setText("Playstation");
+        jToggleButton22.setMargin(new java.awt.Insets(5, 14, 5, 14));
+        BarraNavegacionPanel.add(jToggleButton22);
+
+        BarraNavegacionScrollPane.setViewportView(BarraNavegacionPanel);
+
+        TopMenu.add(BarraNavegacionScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 1920, 60));
+
+        BotonBuscar.setBackground(new java.awt.Color(48, 48, 48));
+        BotonBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/BotonBuscar.png"))); // NOI18N
+        BotonBuscar.setBorderPainted(false);
+        BotonBuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BotonBuscar.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/BotonBuscarPresionado.png"))); // NOI18N
+        BotonBuscar.setRequestFocusEnabled(false);
+        BotonBuscar.setRolloverEnabled(false);
+        TopMenu.add(BotonBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1220, 20, 60, 30));
+
+        TextoBuscar.setBackground(new java.awt.Color(18, 18, 18));
+        TextoBuscar.setForeground(new java.awt.Color(255, 255, 255));
+        TextoBuscar.setText("Buscar");
+        TextoBuscar.setBorder(null);
+        TopMenu.add(TextoBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 20, 500, 30));
+
+        BotonAcceder.setIcon(new javax.swing.ImageIcon(getClass().getResource("/BotonAcceder.png"))); // NOI18N
+        BotonAcceder.setContentAreaFilled(false);
+        BotonAcceder.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BotonAcceder.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/BotonAccederPresionado.png"))); // NOI18N
+        TopMenu.add(BotonAcceder, new org.netbeans.lib.awtextra.AbsoluteConstraints(1770, 10, 140, 50));
+
+        BotonTresPuntos.setContentAreaFilled(false);
+        BotonTresPuntos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        TopMenu.add(BotonTresPuntos, new org.netbeans.lib.awtextra.AbsoluteConstraints(1750, 20, 20, 30));
+
+        BotonYouTubeLogo.setContentAreaFilled(false);
+        BotonYouTubeLogo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        TopMenu.add(BotonYouTubeLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 20, 100, 30));
+
+        jButton1.setBackground(new java.awt.Color(33, 33, 33));
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/TresBarras.png"))); // NOI18N
+        jButton1.setBorderPainted(false);
+        jButton1.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/TresBarrasPresionado.png"))); // NOI18N
+        TopMenu.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 30, 30));
+
+        ImagenTopMenu.setBackground(new java.awt.Color(33, 33, 33));
+        ImagenTopMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Top Menu.png"))); // NOI18N
+        TopMenu.add(ImagenTopMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1920, 130));
+
+        Fondo.add(TopMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1920, 120));
+
+        getContentPane().add(Fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1920, 1080));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -73,31 +251,57 @@ public class PaginaPrincipal extends javax.swing.JFrame {
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PaginaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PaginaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PaginaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+  
+        
+      try {
+            UIManager.setLookAndFeel(new FlatDarkLaf()); // Puedes usar FlatDarkLaf u otros temas de FlatLaf
+        } catch (UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(PaginaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
+       
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> {
-            new PaginaPrincipal().setVisible(true);
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new PaginaPrincipal().setVisible(true);
+            }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel BarraNavegacionPanel;
+    private javax.swing.JScrollPane BarraNavegacionScrollPane;
+    private javax.swing.JButton BotonAcceder;
+    private javax.swing.JButton BotonBuscar;
+    private javax.swing.JButton BotonTresPuntos;
+    private javax.swing.JButton BotonYouTubeLogo;
+    private javax.swing.JPanel Fondo;
+    private javax.swing.JLabel ImagenTopMenu;
+    private javax.swing.JTextField TextoBuscar;
+    private javax.swing.JPanel TopMenu;
     private javax.swing.JButton jButton1;
+    private javax.swing.JToggleButton jToggleButton1;
+    private javax.swing.JToggleButton jToggleButton10;
+    private javax.swing.JToggleButton jToggleButton11;
+    private javax.swing.JToggleButton jToggleButton12;
+    private javax.swing.JToggleButton jToggleButton13;
+    private javax.swing.JToggleButton jToggleButton14;
+    private javax.swing.JToggleButton jToggleButton15;
+    private javax.swing.JToggleButton jToggleButton16;
+    private javax.swing.JToggleButton jToggleButton17;
+    private javax.swing.JToggleButton jToggleButton18;
+    private javax.swing.JToggleButton jToggleButton19;
+    private javax.swing.JToggleButton jToggleButton2;
+    private javax.swing.JToggleButton jToggleButton20;
+    private javax.swing.JToggleButton jToggleButton21;
+    private javax.swing.JToggleButton jToggleButton22;
+    private javax.swing.JToggleButton jToggleButton3;
+    private javax.swing.JToggleButton jToggleButton4;
+    private javax.swing.JToggleButton jToggleButton5;
+    private javax.swing.JToggleButton jToggleButton6;
+    private javax.swing.JToggleButton jToggleButton7;
+    private javax.swing.JToggleButton jToggleButton8;
+    private javax.swing.JToggleButton jToggleButton9;
     // End of variables declaration//GEN-END:variables
 }
