@@ -4,6 +4,11 @@
  */
 package com.mycompany.proyecto_github;
 
+import java.awt.Color;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import javax.swing.BorderFactory;
+
 /**
  *
  * @author victor 
@@ -17,8 +22,19 @@ public class CrearCuenta extends javax.swing.JFrame {
         initComponents();
         pack(); // Ajusta el tamaño de la ventana según los componentes
         setLocationRelativeTo(null); // Centra la ventana en la pantalla
-    }
-    
+        
+        BotonSiguiente.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                BotonSiguiente.setBorder(BorderFactory.createLineBorder(Color.RED, 2)); //segun que para cuando presiones el boton, este se "ilumine". Pero no funciona.
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                BotonSiguiente.setBorder(BorderFactory.createEmptyBorder());
+           }
+    });
+                }
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -58,12 +74,13 @@ public class CrearCuenta extends javax.swing.JFrame {
         BotonSiguiente.setBackground(new java.awt.Color(155, 202, 255));
         BotonSiguiente.setFont(new java.awt.Font("Dialog", 0, 15)); // NOI18N
         BotonSiguiente.setForeground(new java.awt.Color(0, 0, 0));
-        BotonSiguiente.setText("Siguiente");
         BotonSiguiente.setBorder(null);
         BotonSiguiente.setBorderPainted(false);
+        BotonSiguiente.setContentAreaFilled(false);
         BotonSiguiente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BotonSiguiente.setDebugGraphicsOptions(javax.swing.DebugGraphics.FLASH_OPTION);
         BotonSiguiente.setDefaultCapable(false);
-        BotonSiguiente.setFocusPainted(false);
+        BotonSiguiente.setFocusCycleRoot(true);
         BotonSiguiente.setRequestFocusEnabled(false);
         BotonSiguiente.setRolloverEnabled(false);
         BotonSiguiente.addActionListener(new java.awt.event.ActionListener() {
@@ -141,4 +158,5 @@ public class CrearCuenta extends javax.swing.JFrame {
     private javax.swing.JPanel Fondo;
     private javax.swing.JPanel FondoContainer;
     // End of variables declaration//GEN-END:variables
+
 }
