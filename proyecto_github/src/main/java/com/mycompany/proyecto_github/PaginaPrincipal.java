@@ -5,6 +5,13 @@
 package com.mycompany.proyecto_github;
 
 import com.formdev.flatlaf.FlatDarkLaf;
+
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.net.URL;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
@@ -16,6 +23,7 @@ public class PaginaPrincipal extends javax.swing.JFrame {
 
     public PaginaPrincipal() {
         initComponents();
+
     }
 
     /**
@@ -29,6 +37,12 @@ public class PaginaPrincipal extends javax.swing.JFrame {
 
         jLayeredPane1 = new javax.swing.JLayeredPane();
         Fondo = new javax.swing.JPanel();
+        Miniatura = new javax.swing.JLabel();
+        ImagenMini = new javax.swing.JLabel();
+        BarraLateral = new javax.swing.JPanel();
+        BotonTresBarrasBarraLateral = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        ImagenBarraLateral = new javax.swing.JLabel();
         TopMenu = new javax.swing.JPanel();
         BarraNavegacionScrollPane = new javax.swing.JScrollPane();
         BarraNavegacionPanel = new javax.swing.JPanel();
@@ -59,11 +73,8 @@ public class PaginaPrincipal extends javax.swing.JFrame {
         BotonAcceder = new javax.swing.JButton();
         BotonTresPuntos = new javax.swing.JButton();
         BotonYouTubeLogo = new javax.swing.JButton();
-        BotonTresBarras = new javax.swing.JButton();
+        BotonTresBarrasTopMenu = new javax.swing.JButton();
         ImagenTopMenu = new javax.swing.JLabel();
-        BarraLateral = new javax.swing.JPanel();
-        TresBarrasBarraLateral = new javax.swing.JButton();
-        ImagenBarraLateral = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -71,6 +82,39 @@ public class PaginaPrincipal extends javax.swing.JFrame {
 
         Fondo.setBackground(new java.awt.Color(0, 0, 0));
         Fondo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        Fondo.add(Miniatura, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 130, 400, 160));
+
+        ImagenMini.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Miniaturas.png"))); // NOI18N
+        ImagenMini.setText("jLabel1");
+        Fondo.add(ImagenMini, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 130, 1670, 1400));
+
+        jLayeredPane1.add(Fondo);
+        Fondo.setBounds(0, 0, 1920, 1080);
+
+        BarraLateral.setBackground(new java.awt.Color(33, 33, 33));
+        BarraLateral.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        BotonTresBarrasBarraLateral.setIcon(new javax.swing.ImageIcon(getClass().getResource("/TresBarras.png"))); // NOI18N
+        BotonTresBarrasBarraLateral.setBorderPainted(false);
+        BotonTresBarrasBarraLateral.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BotonTresBarrasBarraLateral.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/TresBarrasPresionado.png"))); // NOI18N
+        BotonTresBarrasBarraLateral.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonTresBarrasBarraLateralActionPerformed(evt);
+            }
+        });
+        BarraLateral.add(BotonTresBarrasBarraLateral, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 30, 40));
+
+        jButton1.setContentAreaFilled(false);
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BarraLateral.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 220, 240, 30));
+
+        ImagenBarraLateral.setIcon(new javax.swing.ImageIcon(getClass().getResource("/BarraLateral.png"))); // NOI18N
+        BarraLateral.add(ImagenBarraLateral, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 240, 1080));
+
+        jLayeredPane1.setLayer(BarraLateral, javax.swing.JLayeredPane.PALETTE_LAYER);
+        jLayeredPane1.add(BarraLateral);
+        BarraLateral.setBounds(0, 0, 240, 1080);
 
         TopMenu.setBackground(new java.awt.Color(33, 33, 33));
         TopMenu.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -229,81 +273,82 @@ public class PaginaPrincipal extends javax.swing.JFrame {
         BotonYouTubeLogo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         TopMenu.add(BotonYouTubeLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 20, 100, 30));
 
-        BotonTresBarras.setBackground(new java.awt.Color(33, 33, 33));
-        BotonTresBarras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/TresBarras.png"))); // NOI18N
-        BotonTresBarras.setBorderPainted(false);
-        BotonTresBarras.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        BotonTresBarras.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/TresBarrasPresionado.png"))); // NOI18N
-        BotonTresBarras.addActionListener(new java.awt.event.ActionListener() {
+        BotonTresBarrasTopMenu.setBackground(new java.awt.Color(33, 33, 33));
+        BotonTresBarrasTopMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/TresBarras.png"))); // NOI18N
+        BotonTresBarrasTopMenu.setBorderPainted(false);
+        BotonTresBarrasTopMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BotonTresBarrasTopMenu.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/TresBarrasPresionado.png"))); // NOI18N
+        BotonTresBarrasTopMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotonTresBarrasActionPerformed(evt);
+                BotonTresBarrasTopMenuActionPerformed(evt);
             }
         });
-        TopMenu.add(BotonTresBarras, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 30, 40));
+        TopMenu.add(BotonTresBarrasTopMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 30, 40));
 
         ImagenTopMenu.setBackground(new java.awt.Color(33, 33, 33));
         ImagenTopMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Top Menu.png"))); // NOI18N
         TopMenu.add(ImagenTopMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1920, -1));
 
-        Fondo.add(TopMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1920, 120));
-
-        jLayeredPane1.add(Fondo);
-        Fondo.setBounds(0, 0, 1920, 1080);
-
-        BarraLateral.setBackground(new java.awt.Color(33, 33, 33));
-        BarraLateral.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        TresBarrasBarraLateral.setIcon(new javax.swing.ImageIcon(getClass().getResource("/TresBarras.png"))); // NOI18N
-        TresBarrasBarraLateral.setBorderPainted(false);
-        TresBarrasBarraLateral.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        TresBarrasBarraLateral.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/TresBarrasPresionado.png"))); // NOI18N
-        TresBarrasBarraLateral.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TresBarrasBarraLateralActionPerformed(evt);
-            }
-        });
-        BarraLateral.add(TresBarrasBarraLateral, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 30, 40));
-
-        ImagenBarraLateral.setIcon(new javax.swing.ImageIcon(getClass().getResource("/BarraLateral.png"))); // NOI18N
-        BarraLateral.add(ImagenBarraLateral, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 230, 1080));
-
-        jLayeredPane1.setLayer(BarraLateral, javax.swing.JLayeredPane.PALETTE_LAYER);
-        jLayeredPane1.add(BarraLateral);
-        BarraLateral.setBounds(0, 0, 240, 1080);
+        jLayeredPane1.setLayer(TopMenu, javax.swing.JLayeredPane.PALETTE_LAYER);
+        jLayeredPane1.add(TopMenu);
+        TopMenu.setBounds(0, 0, 1920, 120);
 
         getContentPane().add(jLayeredPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1920, 1080));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void BotonTresBarrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonTresBarrasActionPerformed
-        // TODO add your handling code here:
-        int barraLateralX = BarraLateral.getX();
+    private void BotonTresBarrasTopMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonTresBarrasTopMenuActionPerformed
+    int barraLateralX = BarraLateral.getX();
     if (barraLateralX < 0) {
         // Mostrar la barra lateral
         BarraLateral.setLocation(0, BarraLateral.getY());
+        // Desplazar la barra de categorías a la derecha
+        BarraNavegacionPanel.setLocation(BarraLateral.getWidth(), BarraNavegacionPanel.getY());
     } else {
-        // Ocultar la barra lateral (asumiendo un ancho de 200)
+        // Ocultar la barra lateral
         BarraLateral.setLocation(-250, BarraLateral.getY());
+        // Regresar la barra de categorías a su posición original
+        BarraNavegacionPanel.setLocation(0, BarraNavegacionPanel.getY());
     }
     jLayeredPane1.revalidate();
     jLayeredPane1.repaint();
-    }//GEN-LAST:event_BotonTresBarrasActionPerformed
+    }//GEN-LAST:event_BotonTresBarrasTopMenuActionPerformed
 
-    private void TresBarrasBarraLateralActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TresBarrasBarraLateralActionPerformed
-        // TODO add your handling code here:
-                int barraLateralX = BarraLateral.getX();
+    private void BotonTresBarrasBarraLateralActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonTresBarrasBarraLateralActionPerformed
+    int barraLateralX = BarraLateral.getX();
     if (barraLateralX < 0) {
         // Mostrar la barra lateral
         BarraLateral.setLocation(0, BarraLateral.getY());
+        // Desplazar la barra de categorías a la derecha
+        BarraNavegacionPanel.setLocation(BarraLateral.getWidth(), BarraNavegacionPanel.getY());
     } else {
-        // Ocultar la barra lateral (asumiendo un ancho de 200)
+        // Ocultar la barra lateral
         BarraLateral.setLocation(-250, BarraLateral.getY());
+        // Regresar la barra de categorías a su posición original
+        BarraNavegacionPanel.setLocation(0, BarraNavegacionPanel.getY());
     }
     jLayeredPane1.revalidate();
     jLayeredPane1.repaint();
-    }//GEN-LAST:event_TresBarrasBarraLateralActionPerformed
+    }//GEN-LAST:event_BotonTresBarrasBarraLateralActionPerformed
 
+private void cargarMiniaturaYouTube(String videoId, javax.swing.JLabel label) {
+        try {
+            // URL para la miniatura de alta resolución
+            String thumbnailUrl = "https://i.ytimg.com/vi/" + videoId + "/hqdefault.jpg";
+            URL url = new URL(thumbnailUrl);
+            BufferedImage img = ImageIO.read(url);
+            ImageIcon icon = new ImageIcon(img);
+            label.setIcon(icon);
+            label.setText(""); // Limpiar cualquier texto predeterminado del JLabel
+        } catch (IOException e) {
+            System.err.println("Error al cargar la miniatura: " + e.getMessage());
+            label.setText("Error al cargar la miniatura"); // Mostrar mensaje de error
+            // Puedes también cargar una imagen de error por defecto aquí si lo deseas
+            // label.setIcon(new ImageIcon(getClass().getResource("/error_miniatura.png")));
+        }
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -337,15 +382,18 @@ public class PaginaPrincipal extends javax.swing.JFrame {
     private javax.swing.JScrollPane BarraNavegacionScrollPane;
     private javax.swing.JButton BotonAcceder;
     private javax.swing.JButton BotonBuscar;
-    private javax.swing.JButton BotonTresBarras;
+    private javax.swing.JButton BotonTresBarrasBarraLateral;
+    private javax.swing.JButton BotonTresBarrasTopMenu;
     private javax.swing.JButton BotonTresPuntos;
     private javax.swing.JButton BotonYouTubeLogo;
     private javax.swing.JPanel Fondo;
     private javax.swing.JLabel ImagenBarraLateral;
+    private javax.swing.JLabel ImagenMini;
     private javax.swing.JLabel ImagenTopMenu;
+    private javax.swing.JLabel Miniatura;
     private javax.swing.JTextField TextoBuscar;
     private javax.swing.JPanel TopMenu;
-    private javax.swing.JButton TresBarrasBarraLateral;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JToggleButton jToggleButton10;
@@ -370,4 +418,5 @@ public class PaginaPrincipal extends javax.swing.JFrame {
     private javax.swing.JToggleButton jToggleButton8;
     private javax.swing.JToggleButton jToggleButton9;
     // End of variables declaration//GEN-END:variables
+
 }
