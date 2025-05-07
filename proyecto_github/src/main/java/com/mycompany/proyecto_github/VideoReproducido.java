@@ -41,6 +41,7 @@ public class VideoReproducido extends javax.swing.JFrame {
         Compartir = new javax.swing.JButton();
         Guardar = new javax.swing.JButton();
         BotonSuscribir = new javax.swing.JToggleButton();
+        jTextField1 = new javax.swing.JTextField();
         ConteoSuscriptores = new javax.swing.JLabel();
         NombreUsuario = new javax.swing.JLabel();
         ConteoLikes = new javax.swing.JLabel();
@@ -104,16 +105,20 @@ public class VideoReproducido extends javax.swing.JFrame {
         Pagina.add(Dislike, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 446, 40, 30));
 
         Compartir.setContentAreaFilled(false);
+        Compartir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         Pagina.add(Compartir, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 450, 120, 20));
 
         Guardar.setContentAreaFilled(false);
+        Guardar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         Pagina.add(Guardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 450, 100, 20));
 
         BotonSuscribir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/BotonSuscribir.png"))); // NOI18N
         BotonSuscribir.setBorderPainted(false);
         BotonSuscribir.setContentAreaFilled(false);
+        BotonSuscribir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         BotonSuscribir.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/BotonSuscrito.png"))); // NOI18N
         Pagina.add(BotonSuscribir, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 510, 110, 40));
+        Pagina.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 720, 570, 30));
 
         ConteoSuscriptores.setFont(new java.awt.Font("Noto Sans", 0, 10)); // NOI18N
         ConteoSuscriptores.setText(" suscriptores");
@@ -223,5 +228,6 @@ public class VideoReproducido extends javax.swing.JFrame {
     private javax.swing.JPanel TopMenu;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLayeredPane jLayeredPane1;
+    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }
