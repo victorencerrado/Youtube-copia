@@ -1,17 +1,24 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+    /*
+ * Click nbfs://nbho    st/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package com.mycompany.proyecto_github;
 
 import com.formdev.flatlaf.FlatDarkLaf;
-
-import java.awt.image.BufferedImage;
-import java.io.IOException;
+import java.awt.Cursor;
+import java.awt.Dimension;
+import java.awt.GridLayout;
+import java.awt.Image;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.net.URL;
-import javax.imageio.ImageIO;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import javafx.application.Platform;
 import javax.swing.ImageIcon;
-
+import javax.swing.JLabel;
+import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
@@ -19,13 +26,57 @@ import javax.swing.UnsupportedLookAndFeelException;
  *
  * @author Victor Encerrado
  */
+
 public class PaginaPrincipal extends javax.swing.JFrame {
 
-    public PaginaPrincipal() {
-        initComponents();
+    private Map<JLabel, String> miniaturasConUrl; // Mapa para relacionar JLabel con URL del video
 
+    public PaginaPrincipal() {
+        miniaturasConUrl = new HashMap<>();
+        initComponents();
+        cargarMiniaturas();
     }
 
+    private void cargarMiniaturas() {
+        List<String[]> miniaturasUrls = DatabaseManager.obtenerMiniaturasAleatoriasConUrls(); // Ahora obtenemos URL de miniatura y video
+        FondoMiniaturas.removeAll(); // Limpia el panel antes de agregar nuevas miniaturas
+        FondoMiniaturas.setLayout(new GridLayout(3, 4, 10, 10)); // 3 filas x 4 columnas
+
+        for (String[] data : miniaturasUrls) {
+            String thumbnailUrl = data[0]; // URL de la miniatura
+            String videoUrl = data[1];    // URL del video
+            JLabel label = new JLabel();
+            label.setHorizontalAlignment(JLabel.CENTER);
+            label.setPreferredSize(new Dimension(310, 220));
+            label.setCursor(new Cursor(Cursor.HAND_CURSOR)); // Cambiar el cursor al pasar por encima
+            cargarImagenDesdeURL(thumbnailUrl, label);
+            miniaturasConUrl.put(label, videoUrl); // Asociamos el JLabel con la URL del video
+            label.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    String urlVideoSeleccionado = miniaturasConUrl.get(label);
+                  
+                }
+            });
+            FondoMiniaturas.add(label);
+        }
+
+        FondoMiniaturas.revalidate();
+        FondoMiniaturas.repaint();
+    }
+
+    private void cargarImagenDesdeURL(String url, JLabel label) {
+        SwingUtilities.invokeLater(() -> {
+            try {
+                ImageIcon icon = new ImageIcon(new URL(url));
+                Image image = icon.getImage().getScaledInstance(310, 220, Image.SCALE_SMOOTH);
+                label.setIcon(new ImageIcon(image));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -37,8 +88,7 @@ public class PaginaPrincipal extends javax.swing.JFrame {
 
         jLayeredPane1 = new javax.swing.JLayeredPane();
         Fondo = new javax.swing.JPanel();
-        Miniatura = new javax.swing.JLabel();
-        ImagenMini = new javax.swing.JLabel();
+        FondoMiniaturas = new javax.swing.JPanel();
         BarraLateral = new javax.swing.JPanel();
         BotonTresBarrasBarraLateral = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
@@ -82,11 +132,10 @@ public class PaginaPrincipal extends javax.swing.JFrame {
 
         Fondo.setBackground(new java.awt.Color(0, 0, 0));
         Fondo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        Fondo.add(Miniatura, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 130, 400, 160));
 
-        ImagenMini.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Miniaturas.png"))); // NOI18N
-        ImagenMini.setText("jLabel1");
-        Fondo.add(ImagenMini, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 130, 1670, 1400));
+        FondoMiniaturas.setBackground(new java.awt.Color(0, 0, 0));
+        FondoMiniaturas.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        Fondo.add(FondoMiniaturas, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 120, 1680, 960));
 
         jLayeredPane1.add(Fondo);
         Fondo.setBounds(0, 0, 1920, 1080);
@@ -332,22 +381,7 @@ public class PaginaPrincipal extends javax.swing.JFrame {
     jLayeredPane1.repaint();
     }//GEN-LAST:event_BotonTresBarrasBarraLateralActionPerformed
 
-private void cargarMiniaturaYouTube(String videoId, javax.swing.JLabel label) {
-        try {
-            // URL para la miniatura de alta resolución
-            String thumbnailUrl = "https://i.ytimg.com/vi/" + videoId + "/hqdefault.jpg";
-            URL url = new URL(thumbnailUrl);
-            BufferedImage img = ImageIO.read(url);
-            ImageIcon icon = new ImageIcon(img);
-            label.setIcon(icon);
-            label.setText(""); // Limpiar cualquier texto predeterminado del JLabel
-        } catch (IOException e) {
-            System.err.println("Error al cargar la miniatura: " + e.getMessage());
-            label.setText("Error al cargar la miniatura"); // Mostrar mensaje de error
-            // Puedes también cargar una imagen de error por defecto aquí si lo deseas
-            // label.setIcon(new ImageIcon(getClass().getResource("/error_miniatura.png")));
-        }
-    }
+    
     
     /**
      * @param args the command line arguments
@@ -366,9 +400,10 @@ private void cargarMiniaturaYouTube(String videoId, javax.swing.JLabel label) {
             java.util.logging.Logger.getLogger(PaginaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+        Platform.startup(() -> {});
        
         /* Create and display the form */
+        
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new PaginaPrincipal().setVisible(true);
@@ -387,10 +422,9 @@ private void cargarMiniaturaYouTube(String videoId, javax.swing.JLabel label) {
     private javax.swing.JButton BotonTresPuntos;
     private javax.swing.JButton BotonYouTubeLogo;
     private javax.swing.JPanel Fondo;
+    private javax.swing.JPanel FondoMiniaturas;
     private javax.swing.JLabel ImagenBarraLateral;
-    private javax.swing.JLabel ImagenMini;
     private javax.swing.JLabel ImagenTopMenu;
-    private javax.swing.JLabel Miniatura;
     private javax.swing.JTextField TextoBuscar;
     private javax.swing.JPanel TopMenu;
     private javax.swing.JButton jButton1;

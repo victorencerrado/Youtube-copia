@@ -10,13 +10,17 @@ package com.mycompany.proyecto_github;
  */
 public class Perfil extends javax.swing.JFrame {
 
+     public Perfil(String email) { // Constructor que recibe el email
+        initComponents();
+        NombreUsuarioPerfil.setText(email); // Mostrar el email en el JLabel
+    }
+    
     /**
      * Creates new form Perfil
      */
     public Perfil() {
         initComponents();
-        
-        
+      
     }
 
     /**
@@ -28,8 +32,42 @@ public class Perfil extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLayeredPane1 = new javax.swing.JLayeredPane();
+        Fondo2 = new javax.swing.JPanel();
+        NombreUsuarioPerfil = new javax.swing.JLabel();
+        BackgroundPhoto = new javax.swing.JLabel();
+        TextoCrearContenido = new javax.swing.JLabel();
+        Fondo = new javax.swing.JPanel();
+        PerfilFondo = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        Fondo2.setBackground(new java.awt.Color(33, 33, 33));
+        Fondo2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        NombreUsuarioPerfil.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
+        NombreUsuarioPerfil.setForeground(new java.awt.Color(255, 255, 255));
+        Fondo2.add(NombreUsuarioPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 230, 710, 30));
+
+        BackgroundPhoto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PerfilYoutube.png"))); // NOI18N
+        Fondo2.add(BackgroundPhoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 10, -1, -1));
+
+        TextoCrearContenido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CrearContenidoTexto.png"))); // NOI18N
+        Fondo2.add(TextoCrearContenido, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 720, -1, -1));
+
+        jLayeredPane1.add(Fondo2);
+        Fondo2.setBounds(240, 50, 1680, 1030);
+
+        Fondo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        PerfilFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PerfilFondo.png"))); // NOI18N
+        Fondo.add(PerfilFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        jLayeredPane1.add(Fondo);
+        Fondo.setBounds(0, 0, 1920, 1080);
+
+        getContentPane().add(jLayeredPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1920, 1080));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -70,5 +108,12 @@ public class Perfil extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel BackgroundPhoto;
+    private javax.swing.JPanel Fondo;
+    private javax.swing.JPanel Fondo2;
+    private javax.swing.JLabel NombreUsuarioPerfil;
+    private javax.swing.JLabel PerfilFondo;
+    private javax.swing.JLabel TextoCrearContenido;
+    private javax.swing.JLayeredPane jLayeredPane1;
     // End of variables declaration//GEN-END:variables
 }

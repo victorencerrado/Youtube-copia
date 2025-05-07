@@ -4,11 +4,11 @@
  */
 package com.mycompany.proyecto_github;
 
-import java.awt.Color;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import javax.swing.BorderFactory;
-
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
 /**
  *
  * @author victor 
@@ -20,20 +20,7 @@ public class CrearCuenta extends javax.swing.JFrame {
      */
     public CrearCuenta() {
         initComponents();
-        pack(); // Ajusta el tamaño de la ventana según los componentes
-        setLocationRelativeTo(null); // Centra la ventana en la pantalla
-        
-        BotonSiguiente.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mousePressed(MouseEvent e) {
-                BotonSiguiente.setBorder(BorderFactory.createLineBorder(Color.RED, 2)); //segun que para cuando presiones el boton, este se "ilumine". Pero no funciona.
-            }
-
-            @Override
-            public void mouseReleased(MouseEvent e) {
-                BotonSiguiente.setBorder(BorderFactory.createEmptyBorder());
-           }
-    });
+     
                 }
     
     /**
@@ -71,9 +58,10 @@ public class CrearCuenta extends javax.swing.JFrame {
         BarraEmail.setName(""); // NOI18N
         FondoContainer.add(BarraEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 169, 560, 40));
 
-        BotonSiguiente.setBackground(new java.awt.Color(155, 202, 255));
+        BotonSiguiente.setBackground(new java.awt.Color(18, 18, 18));
         BotonSiguiente.setFont(new java.awt.Font("Dialog", 0, 15)); // NOI18N
         BotonSiguiente.setForeground(new java.awt.Color(0, 0, 0));
+        BotonSiguiente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/BotonSiguiente.png"))); // NOI18N
         BotonSiguiente.setBorder(null);
         BotonSiguiente.setBorderPainted(false);
         BotonSiguiente.setContentAreaFilled(false);
@@ -88,7 +76,7 @@ public class CrearCuenta extends javax.swing.JFrame {
                 BotonSiguienteActionPerformed(evt);
             }
         });
-        FondoContainer.add(BotonSiguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 370, 90, 40));
+        FondoContainer.add(BotonSiguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 365, 170, -1));
 
         BarraContrasena.setBackground(new java.awt.Color(18, 18, 18));
         BarraContrasena.setFont(new java.awt.Font("DialogInput", 1, 18)); // NOI18N
@@ -112,7 +100,38 @@ public class CrearCuenta extends javax.swing.JFrame {
 
     private void BotonSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonSiguienteActionPerformed
     // Configurar boton para que haga un insert o un consult en la base de datos y que pueda ingresar los datos ! ! !
+    String email = BarraEmail.getText();
+    String password = new String(BarraContrasena.getPassword());
+
+    if (email.isEmpty() || password.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos.", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    try {
+        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mysql", "root", "hola12345");
+        String query = "INSERT INTO usuarios (email, password) VALUES (?, ?)";
+        PreparedStatement pst = con.prepareStatement(query);
+        pst.setString(1, email);
+        pst.setString(2, password);
         
+        int rowsInserted = pst.executeUpdate();
+        if (rowsInserted > 0) {
+            JOptionPane.showMessageDialog(this, "Cuenta creada exitosamente.");
+            
+            // Abre la ventana de Perfil y pasa el email
+            Perfil perfilVentana = new Perfil(email);
+            perfilVentana.setVisible(true);
+            
+            // Cierra la ventana actual
+            this.dispose();
+        }
+
+        pst.close();
+        con.close();
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(this, "Error al registrar el usuario: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+    }
     }//GEN-LAST:event_BotonSiguienteActionPerformed
 
     /**

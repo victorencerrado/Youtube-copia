@@ -4,9 +4,14 @@
  */
 package com.mycompany.proyecto_github;
 
+import com.formdev.flatlaf.FlatDarkLaf;
+import javafx.application.Platform;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+
 /**
  *
- * @author vicen
+ * @author victor
  */
 public class VideoReproducido extends javax.swing.JFrame {
 
@@ -15,7 +20,6 @@ public class VideoReproducido extends javax.swing.JFrame {
      */
     public VideoReproducido() {
         initComponents();
-        //
     }
 
     /**
@@ -27,40 +31,132 @@ public class VideoReproducido extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        jLayeredPane1 = new javax.swing.JLayeredPane();
+        TopMenu = new javax.swing.JPanel();
+        ImagenTopMenu = new javax.swing.JLabel();
+        Pagina = new javax.swing.JPanel();
+        ReproductorDeVideo = new javax.swing.JPanel();
+        Like = new javax.swing.JButton();
+        Dislike = new javax.swing.JButton();
+        Compartir = new javax.swing.JButton();
+        Guardar = new javax.swing.JButton();
+        BotonSuscribir = new javax.swing.JToggleButton();
+        ConteoSuscriptores = new javax.swing.JLabel();
+        NombreUsuario = new javax.swing.JLabel();
+        ConteoLikes = new javax.swing.JLabel();
+        ConteoDislikes = new javax.swing.JLabel();
+        ConteoVistas = new javax.swing.JLabel();
+        ConteoComentarios = new javax.swing.JLabel();
+        PaginaDiseño = new javax.swing.JLabel();
+        MiniaturasLateral = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        Fondo = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+        TopMenu.setBackground(new java.awt.Color(33, 33, 33));
+        TopMenu.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        ImagenTopMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/TopMenu2.png"))); // NOI18N
+        TopMenu.add(ImagenTopMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        jLayeredPane1.add(TopMenu);
+        TopMenu.setBounds(0, 0, 1920, 60);
+
+        Pagina.setBackground(new java.awt.Color(24, 24, 24));
+        Pagina.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        ReproductorDeVideo.setBackground(new java.awt.Color(0, 0, 0));
+
+        javax.swing.GroupLayout ReproductorDeVideoLayout = new javax.swing.GroupLayout(ReproductorDeVideo);
+        ReproductorDeVideo.setLayout(ReproductorDeVideoLayout);
+        ReproductorDeVideoLayout.setHorizontalGroup(
+            ReproductorDeVideoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 650, Short.MAX_VALUE)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+        ReproductorDeVideoLayout.setVerticalGroup(
+            ReproductorDeVideoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 370, Short.MAX_VALUE)
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(151, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(149, 149, 149))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(87, 87, 87)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(113, Short.MAX_VALUE))
-        );
+        Pagina.add(ReproductorDeVideo, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 30, 650, 370));
+
+        Like.setBackground(new java.awt.Color(24, 24, 24));
+        Like.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Like.png"))); // NOI18N
+        Like.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        Like.setContentAreaFilled(false);
+        Like.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Like.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/LikePresionado.png"))); // NOI18N
+        Pagina.add(Like, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 440, 30, 40));
+
+        Dislike.setBackground(new java.awt.Color(24, 24, 24));
+        Dislike.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Dislike.png"))); // NOI18N
+        Dislike.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        Dislike.setContentAreaFilled(false);
+        Dislike.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Dislike.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/DislikePresionado.png"))); // NOI18N
+        Dislike.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DislikeActionPerformed(evt);
+            }
+        });
+        Pagina.add(Dislike, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 446, 40, 30));
+
+        Compartir.setContentAreaFilled(false);
+        Pagina.add(Compartir, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 450, 120, 20));
+
+        Guardar.setContentAreaFilled(false);
+        Pagina.add(Guardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 450, 100, 20));
+
+        BotonSuscribir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/BotonSuscribir.png"))); // NOI18N
+        BotonSuscribir.setBorderPainted(false);
+        BotonSuscribir.setContentAreaFilled(false);
+        BotonSuscribir.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/BotonSuscrito.png"))); // NOI18N
+        Pagina.add(BotonSuscribir, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 510, 110, 40));
+
+        ConteoSuscriptores.setFont(new java.awt.Font("Noto Sans", 0, 10)); // NOI18N
+        ConteoSuscriptores.setText(" suscriptores");
+        Pagina.add(ConteoSuscriptores, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 530, 100, 20));
+        Pagina.add(NombreUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 500, 300, 30));
+        Pagina.add(ConteoLikes, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 440, 40, 30));
+        Pagina.add(ConteoDislikes, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 440, 40, 30));
+
+        ConteoVistas.setText(" vistas");
+        Pagina.add(ConteoVistas, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 440, 170, 30));
+
+        ConteoComentarios.setFont(new java.awt.Font("Noto Sans", 1, 18)); // NOI18N
+        ConteoComentarios.setText(" Comentarios");
+        Pagina.add(ConteoComentarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 659, 210, 30));
+
+        PaginaDiseño.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Principal.png"))); // NOI18N
+        Pagina.add(PaginaDiseño, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 10, -1, -1));
+
+        jLayeredPane1.add(Pagina);
+        Pagina.setBounds(0, 60, 1290, 1020);
+
+        MiniaturasLateral.setBackground(new java.awt.Color(24, 24, 24));
+        MiniaturasLateral.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MiniaturasLateralesPlaceholder.png"))); // NOI18N
+        MiniaturasLateral.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+
+        jLayeredPane1.add(MiniaturasLateral);
+        MiniaturasLateral.setBounds(1290, 60, 630, 1020);
+
+        Fondo.setBackground(new java.awt.Color(24, 24, 24));
+        Fondo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jLayeredPane1.add(Fondo);
+        Fondo.setBounds(0, 0, 1920, 1080);
+
+        getContentPane().add(jLayeredPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1920, 1080));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void DislikeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DislikeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_DislikeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -89,6 +185,15 @@ public class VideoReproducido extends javax.swing.JFrame {
         }
         //</editor-fold>
 
+        try {
+            UIManager.setLookAndFeel(new FlatDarkLaf()); // Puedes usar FlatDarkLaf u otros temas de FlatLaf
+        } catch (UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(PaginaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+        Platform.startup(() -> {});
+       
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -98,6 +203,25 @@ public class VideoReproducido extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JToggleButton BotonSuscribir;
+    private javax.swing.JButton Compartir;
+    private javax.swing.JLabel ConteoComentarios;
+    private javax.swing.JLabel ConteoDislikes;
+    private javax.swing.JLabel ConteoLikes;
+    private javax.swing.JLabel ConteoSuscriptores;
+    private javax.swing.JLabel ConteoVistas;
+    private javax.swing.JButton Dislike;
+    private javax.swing.JPanel Fondo;
+    private javax.swing.JButton Guardar;
+    private javax.swing.JLabel ImagenTopMenu;
+    private javax.swing.JButton Like;
+    private javax.swing.JPanel MiniaturasLateral;
+    private javax.swing.JLabel NombreUsuario;
+    private javax.swing.JPanel Pagina;
+    private javax.swing.JLabel PaginaDiseño;
+    private javax.swing.JPanel ReproductorDeVideo;
+    private javax.swing.JPanel TopMenu;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLayeredPane jLayeredPane1;
     // End of variables declaration//GEN-END:variables
 }
