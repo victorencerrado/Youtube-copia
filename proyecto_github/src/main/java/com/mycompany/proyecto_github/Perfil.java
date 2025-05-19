@@ -104,6 +104,9 @@ public class Perfil extends JFrame {
         Video3 = new javax.swing.JPanel();
         Video5 = new javax.swing.JPanel();
         Video6 = new javax.swing.JPanel();
+        Pestañas = new javax.swing.JPanel();
+        VideosPestaña = new javax.swing.JLabel();
+        Principal = new javax.swing.JLabel();
         Fondo = new javax.swing.JPanel();
         PerfilFondo = new javax.swing.JLabel();
 
@@ -160,14 +163,57 @@ public class Perfil extends JFrame {
         Youtuber1.setForeground(new java.awt.Color(255, 255, 255));
         Youtuber1.setText("Título de video");
         Videos.add(Youtuber1, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 410, 540, 30));
+
+        Video1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Video1MouseClicked(evt);
+            }
+        });
         Videos.add(Video1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 730, 230, 140));
+
+        Video2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Video2MouseClicked(evt);
+            }
+        });
         Videos.add(Video2, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 730, 230, 140));
+
+        Video3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Video3MouseClicked(evt);
+            }
+        });
         Videos.add(Video3, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 730, 230, 140));
+
+        Video5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Video5MouseClicked(evt);
+            }
+        });
         Videos.add(Video5, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 730, 230, 140));
+
+        Video6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Video6MouseClicked(evt);
+            }
+        });
         Videos.add(Video6, new org.netbeans.lib.awtextra.AbsoluteConstraints(1150, 730, 230, 140));
 
         jLayeredPane1.add(Videos);
         Videos.setBounds(240, 50, 1680, 1030);
+
+        VideosPestaña.setText("Videos");
+        VideosPestaña.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        Pestañas.add(VideosPestaña);
+        VideosPestaña.getAccessibleContext().setAccessibleName("Videos");
+        VideosPestaña.getAccessibleContext().setAccessibleParent(Pestañas);
+
+        Principal.setText("jLabel1");
+        Pestañas.add(Principal);
+        Principal.getAccessibleContext().setAccessibleName("Home");
+
+        jLayeredPane1.add(Pestañas);
+        Pestañas.setBounds(0, 0, 87, 26);
 
         Fondo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -181,6 +227,26 @@ public class Perfil extends JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void Video1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Video1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Video1MouseClicked
+
+    private void Video2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Video2MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Video2MouseClicked
+
+    private void Video3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Video3MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Video3MouseClicked
+
+    private void Video5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Video5MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Video5MouseClicked
+
+    private void Video6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Video6MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Video6MouseClicked
 
     /**
      * @param args the command line arguments
@@ -222,6 +288,8 @@ public class Perfil extends JFrame {
     private javax.swing.JPanel Fondo;
     private javax.swing.JLabel NombreUsuarioPerfil;
     private javax.swing.JLabel PerfilFondo;
+    private javax.swing.JPanel Pestañas;
+    private javax.swing.JLabel Principal;
     private javax.swing.JLabel TítuloDeVideo;
     private javax.swing.JLabel TítuloDeVideo1;
     private javax.swing.JPanel Video;
@@ -231,6 +299,7 @@ public class Perfil extends JFrame {
     private javax.swing.JPanel Video5;
     private javax.swing.JPanel Video6;
     private javax.swing.JPanel Videos;
+    private javax.swing.JLabel VideosPestaña;
     private javax.swing.JLabel Vistas;
     private javax.swing.JLabel Vistas1;
     private javax.swing.JLabel Youtuber;
