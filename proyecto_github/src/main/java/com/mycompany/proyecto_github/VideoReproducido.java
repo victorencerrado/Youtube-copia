@@ -6,8 +6,19 @@ package com.mycompany.proyecto_github;
 
 import com.formdev.flatlaf.FlatDarkLaf;
 import javafx.application.Platform;
-import javax.swing.UIManager;
+import javafx.embed.swing.JFXPanel;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javax.swing.*;
 import javax.swing.UnsupportedLookAndFeelException;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.net.URL;
+import java.util.List;
+import java.util.Random;
 
 /**
  *
@@ -18,8 +29,172 @@ public class VideoReproducido extends javax.swing.JFrame {
     /**
      * Creates new form VideoReproducido
      */
-    public VideoReproducido() {
+    private String currentVideoUrl;
+    private int likes = 0;
+    private int dislikes = 0;
+    private int vistas = 0;
+    private int usuarioId = 1; // Placeholder for current user ID
+    private MediaPlayer mediaPlayer;
+    private final JFXPanel fxPanel = new JFXPanel();
+    private String videoTitulo;
+
+    public VideoReproducido(String videoUrl) {
         initComponents();
+        ReproductorDeVideo.setLayout(new BorderLayout());
+        ReproductorDeVideo.add(fxPanel, BorderLayout.CENTER);
+        cargarVideoData(videoUrl);
+        cargarSugerencias();
+        Like.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                likes++;
+                ConteoLikes.setText(String.valueOf(likes));
+                DatabaseManager.actualizarLikes(currentVideoUrl, likes);
+            }
+        });
+
+        Dislike.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                dislikes++;
+                ConteoDislikes.setText(String.valueOf(dislikes));
+                DatabaseManager.actualizarDislikes(currentVideoUrl, dislikes);
+            }
+        });
+
+        // Example of handling comment submission (you'll need a button)
+        CajaComentarios.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String comentario = CajaComentarios.getText();
+                if (!comentario.trim().isEmpty()) {
+                    DatabaseManager.guardarComentario(currentVideoUrl, usuarioId, comentario);
+                    actualizarConteoComentarios();
+                    CajaComentarios.setText(""); // Clear the comment box
+                    // Optionally, load and display the new comments
+                }
+            }
+        });
+    }
+
+    private void cargarVideoData(String videoUrl) {
+    String[] detalles = DatabaseManager.obtenerDetallesVideo(videoUrl);
+    if (detalles != null && detalles.length >= 6) {
+        currentVideoUrl = detalles[0];
+        NombreUsuario.setText(detalles[1]);
+
+        // Verificación para 'vistas'
+        String vistasStr = detalles[2]; // Obtenemos el valor como String
+        if (vistasStr != null && !vistasStr.isEmpty()) { // Verificamos si no es nulo y no está vacío
+            try {
+                vistas = Integer.parseInt(vistasStr); // Intentamos convertir a entero
+            } catch (NumberFormatException e) {
+                System.err.println("Error al convertir 'vistas' a entero: " + vistasStr);
+                vistas = 0; // Asignamos un valor por defecto en caso de error de formato
+            }
+        } else {
+            vistas = 0; // Si es nulo o vacío, asignamos 0
+        }
+        ConteoVistas.setText(vistas + " vistas");
+
+        // Verificación para 'likes'
+        String likesStr = detalles[3];
+        if (likesStr != null && !likesStr.isEmpty()) {
+            try {
+                likes = Integer.parseInt(likesStr);
+            } catch (NumberFormatException e) {
+                System.err.println("Error al convertir 'likes' a entero: " + likesStr);
+                likes = 0;
+            }
+        } else {
+            likes = 0;
+        }
+        ConteoLikes.setText(String.valueOf(likes));
+
+        // Verificación para 'dislikes'
+        String dislikesStr = detalles[4];
+        if (dislikesStr != null && !dislikesStr.isEmpty()) {
+            try {
+                dislikes = Integer.parseInt(dislikesStr);
+            } catch (NumberFormatException e) {
+                System.err.println("Error al convertir 'dislikes' a entero: " + dislikesStr);
+                dislikes = 0;
+            }
+        } else {
+            dislikes = 0;
+        }
+        ConteoDislikes.setText(String.valueOf(dislikes));
+
+        videoTitulo = detalles[5];
+        actualizarVistasInicial();
+        cargarVideo(currentVideoUrl);
+        actualizarConteoComentarios();
+    } else {
+        JOptionPane.showMessageDialog(this, "Error al cargar los detalles del video.", "Error", JOptionPane.ERROR_MESSAGE);
+    }
+}
+
+    private void actualizarVistasInicial() {
+        vistas++;
+        ConteoVistas.setText(vistas + " vistas");
+        DatabaseManager.actualizarVistas(currentVideoUrl);
+    }
+
+    private void cargarVideo(String videoUrl) {
+        Platform.runLater(() -> {
+            Media media = new Media(videoUrl);
+            mediaPlayer = new MediaPlayer(media);
+            javafx.scene.Scene scene = new javafx.scene.Scene(new javafx.scene.layout.StackPane(new javafx.scene.media.MediaView(mediaPlayer)));
+            fxPanel.setScene(scene);
+            mediaPlayer.play();
+        });
+    }
+
+    private void cargarSugerencias() {
+        List<String[]> sugerencias = DatabaseManager.obtenerSugerenciasAleatorias(currentVideoUrl);
+        MiniaturasLateral.removeAll();
+        MiniaturasLateral.setLayout(new BoxLayout(MiniaturasLateral, BoxLayout.Y_AXIS));
+
+        for (String[] data : sugerencias) {
+            String thumbnailUrl = data[0];
+            String suggestionUrl = data[1];
+            JLabel label = new JLabel();
+            label.setHorizontalAlignment(JLabel.LEFT);
+            label.setPreferredSize(new Dimension(MiniaturasLateral.getWidth() - 20, 100));
+            label.setCursor(new Cursor(Cursor.HAND_CURSOR));
+            cargarImagenDesdeURL(thumbnailUrl, label);
+            label.setAlignmentX(Component.LEFT_ALIGNMENT);
+
+            label.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    cargarVideoData(suggestionUrl);
+                    cargarSugerencias(); // Reload suggestions after a new video
+                }
+            });
+            MiniaturasLateral.add(label);
+            MiniaturasLateral.add(Box.createRigidArea(new Dimension(0, 10))); // Add some spacing
+        }
+        MiniaturasLateral.revalidate();
+        MiniaturasLateral.repaint();
+    }
+
+    private void cargarImagenDesdeURL(String url, JLabel label) {
+        SwingUtilities.invokeLater(() -> {
+            try {
+                ImageIcon icon = new ImageIcon(new URL(url));
+                Image image = icon.getImage().getScaledInstance(label.getWidth(), -1, Image.SCALE_SMOOTH); // Keep aspect ratio
+                label.setIcon(new ImageIcon(image));
+            } catch (Exception e) {
+                e.printStackTrace();
+                label.setText("Error al cargar la imagen");
+            }
+        });
+    }
+
+    private void actualizarConteoComentarios() {
+        int conteo = DatabaseManager.obtenerConteoComentarios(currentVideoUrl);
+        ConteoComentarios.setText(conteo + " Comentarios");
     }
 
     /**
@@ -33,6 +208,13 @@ public class VideoReproducido extends javax.swing.JFrame {
 
         jLayeredPane1 = new javax.swing.JLayeredPane();
         TopMenu = new javax.swing.JPanel();
+        BotonBuscar = new javax.swing.JButton();
+        BarraBuscar = new javax.swing.JTextField();
+        BotonMicrofono = new javax.swing.JButton();
+        BotonYoutube = new javax.swing.JButton();
+        BotonCampana = new javax.swing.JButton();
+        BotonSubirVideo = new javax.swing.JButton();
+        BotonPerfil = new javax.swing.JButton();
         ImagenTopMenu = new javax.swing.JLabel();
         Pagina = new javax.swing.JPanel();
         ReproductorDeVideo = new javax.swing.JPanel();
@@ -41,16 +223,17 @@ public class VideoReproducido extends javax.swing.JFrame {
         Compartir = new javax.swing.JButton();
         Guardar = new javax.swing.JButton();
         BotonSuscribir = new javax.swing.JToggleButton();
-        jTextField1 = new javax.swing.JTextField();
+        CajaComentarios = new javax.swing.JTextField();
         ConteoSuscriptores = new javax.swing.JLabel();
         NombreUsuario = new javax.swing.JLabel();
         ConteoLikes = new javax.swing.JLabel();
         ConteoDislikes = new javax.swing.JLabel();
         ConteoVistas = new javax.swing.JLabel();
         ConteoComentarios = new javax.swing.JLabel();
+        TituloVideo = new javax.swing.JLabel();
         PaginaDiseño = new javax.swing.JLabel();
         MiniaturasLateral = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        Miniaturas = new javax.swing.JLabel();
         Fondo = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -58,6 +241,47 @@ public class VideoReproducido extends javax.swing.JFrame {
 
         TopMenu.setBackground(new java.awt.Color(33, 33, 33));
         TopMenu.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        BotonBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/BotonBuscar.png"))); // NOI18N
+        BotonBuscar.setContentAreaFilled(false);
+        BotonBuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        TopMenu.add(BotonBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1220, 10, 60, 40));
+
+        BarraBuscar.setBackground(new java.awt.Color(18, 18, 18));
+        BarraBuscar.setText("Buscar");
+        BarraBuscar.setToolTipText("");
+        BarraBuscar.setBorder(null);
+        BarraBuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        TopMenu.add(BarraBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 10, 520, 40));
+
+        BotonMicrofono.setBackground(new java.awt.Color(0, 0, 0));
+        BotonMicrofono.setBorder(null);
+        BotonMicrofono.setBorderPainted(false);
+        BotonMicrofono.setContentAreaFilled(false);
+        BotonMicrofono.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        TopMenu.add(BotonMicrofono, new org.netbeans.lib.awtextra.AbsoluteConstraints(1290, 10, 40, 40));
+
+        BotonYoutube.setContentAreaFilled(false);
+        BotonYoutube.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        TopMenu.add(BotonYoutube, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, 100, 40));
+
+        BotonCampana.setBorder(null);
+        BotonCampana.setBorderPainted(false);
+        BotonCampana.setContentAreaFilled(false);
+        BotonCampana.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        TopMenu.add(BotonCampana, new org.netbeans.lib.awtextra.AbsoluteConstraints(1800, 15, 30, 30));
+
+        BotonSubirVideo.setBorder(null);
+        BotonSubirVideo.setBorderPainted(false);
+        BotonSubirVideo.setContentAreaFilled(false);
+        BotonSubirVideo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        TopMenu.add(BotonSubirVideo, new org.netbeans.lib.awtextra.AbsoluteConstraints(1750, 20, 30, 20));
+
+        BotonPerfil.setBorder(null);
+        BotonPerfil.setBorderPainted(false);
+        BotonPerfil.setContentAreaFilled(false);
+        BotonPerfil.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        TopMenu.add(BotonPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(1854, 10, 40, 40));
 
         ImagenTopMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/TopMenu2.png"))); // NOI18N
         TopMenu.add(ImagenTopMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -118,7 +342,10 @@ public class VideoReproducido extends javax.swing.JFrame {
         BotonSuscribir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         BotonSuscribir.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/BotonSuscrito.png"))); // NOI18N
         Pagina.add(BotonSuscribir, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 510, 110, 40));
-        Pagina.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 720, 570, 30));
+
+        CajaComentarios.setBackground(new java.awt.Color(24, 24, 24));
+        CajaComentarios.setBorder(null);
+        Pagina.add(CajaComentarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 720, 570, 30));
 
         ConteoSuscriptores.setFont(new java.awt.Font("Noto Sans", 0, 10)); // NOI18N
         ConteoSuscriptores.setText(" suscriptores");
@@ -133,6 +360,7 @@ public class VideoReproducido extends javax.swing.JFrame {
         ConteoComentarios.setFont(new java.awt.Font("Noto Sans", 1, 18)); // NOI18N
         ConteoComentarios.setText(" Comentarios");
         Pagina.add(ConteoComentarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 659, 210, 30));
+        Pagina.add(TituloVideo, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 410, 650, 30));
 
         PaginaDiseño.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Principal.png"))); // NOI18N
         Pagina.add(PaginaDiseño, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 10, -1, -1));
@@ -143,8 +371,8 @@ public class VideoReproducido extends javax.swing.JFrame {
         MiniaturasLateral.setBackground(new java.awt.Color(24, 24, 24));
         MiniaturasLateral.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MiniaturasLateralesPlaceholder.png"))); // NOI18N
-        MiniaturasLateral.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+        Miniaturas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MiniaturasLateralesPlaceholder.png"))); // NOI18N
+        MiniaturasLateral.add(Miniaturas, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
         jLayeredPane1.add(MiniaturasLateral);
         MiniaturasLateral.setBounds(1290, 60, 630, 1020);
@@ -202,13 +430,22 @@ public class VideoReproducido extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VideoReproducido().setVisible(true);
+                // Esto ya no es necesario, la instancia se creará desde PaginaPrincipal
+                // new VideoReproducido().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField BarraBuscar;
+    private javax.swing.JButton BotonBuscar;
+    private javax.swing.JButton BotonCampana;
+    private javax.swing.JButton BotonMicrofono;
+    private javax.swing.JButton BotonPerfil;
+    private javax.swing.JButton BotonSubirVideo;
     private javax.swing.JToggleButton BotonSuscribir;
+    private javax.swing.JButton BotonYoutube;
+    private javax.swing.JTextField CajaComentarios;
     private javax.swing.JButton Compartir;
     private javax.swing.JLabel ConteoComentarios;
     private javax.swing.JLabel ConteoDislikes;
@@ -220,14 +457,14 @@ public class VideoReproducido extends javax.swing.JFrame {
     private javax.swing.JButton Guardar;
     private javax.swing.JLabel ImagenTopMenu;
     private javax.swing.JButton Like;
+    private javax.swing.JLabel Miniaturas;
     private javax.swing.JPanel MiniaturasLateral;
     private javax.swing.JLabel NombreUsuario;
     private javax.swing.JPanel Pagina;
     private javax.swing.JLabel PaginaDiseño;
     private javax.swing.JPanel ReproductorDeVideo;
+    private javax.swing.JLabel TituloVideo;
     private javax.swing.JPanel TopMenu;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLayeredPane jLayeredPane1;
-    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }

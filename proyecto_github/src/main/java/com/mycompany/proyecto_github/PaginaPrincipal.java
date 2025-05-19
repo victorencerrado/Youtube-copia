@@ -54,8 +54,17 @@ public class PaginaPrincipal extends javax.swing.JFrame {
             label.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
-                    String urlVideoSeleccionado = miniaturasConUrl.get(label);
-                  
+                    JLabel clickedLabel = (JLabel) e.getSource();
+                    String urlVideoSeleccionado = miniaturasConUrl.get(clickedLabel);
+                    if (urlVideoSeleccionado != null) {
+                        // **MODIFICACIÓN AQUÍ: Crear e mostrar la ventana VideoReproducido**
+                        VideoReproducido videoFrame = new VideoReproducido(urlVideoSeleccionado);
+                        videoFrame.setVisible(true);
+                        // Opcionalmente, puedes hacer que la ventana principal se oculte
+                        // PaginaPrincipal.this.setVisible(false);
+                    } else {
+                        System.err.println("Error: No se encontró la URL del video para esta miniatura.");
+                    }
                 }
             });
             FondoMiniaturas.add(label);
@@ -91,7 +100,7 @@ public class PaginaPrincipal extends javax.swing.JFrame {
         FondoMiniaturas = new javax.swing.JPanel();
         BarraLateral = new javax.swing.JPanel();
         BotonTresBarrasBarraLateral = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        BotonYoutube = new javax.swing.JButton();
         ImagenBarraLateral = new javax.swing.JLabel();
         TopMenu = new javax.swing.JPanel();
         BarraNavegacionScrollPane = new javax.swing.JScrollPane();
@@ -124,6 +133,7 @@ public class PaginaPrincipal extends javax.swing.JFrame {
         BotonTresPuntos = new javax.swing.JButton();
         BotonYouTubeLogo = new javax.swing.JButton();
         BotonTresBarrasTopMenu = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         ImagenTopMenu = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -154,9 +164,10 @@ public class PaginaPrincipal extends javax.swing.JFrame {
         });
         BarraLateral.add(BotonTresBarrasBarraLateral, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 30, 40));
 
-        jButton1.setContentAreaFilled(false);
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        BarraLateral.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 220, 240, 30));
+        BotonYoutube.setBorderPainted(false);
+        BotonYoutube.setContentAreaFilled(false);
+        BotonYoutube.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BarraLateral.add(BotonYoutube, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, 100, 30));
 
         ImagenBarraLateral.setIcon(new javax.swing.ImageIcon(getClass().getResource("/BarraLateral.png"))); // NOI18N
         BarraLateral.add(ImagenBarraLateral, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 240, 1080));
@@ -334,6 +345,11 @@ public class PaginaPrincipal extends javax.swing.JFrame {
         });
         TopMenu.add(BotonTresBarrasTopMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 30, 40));
 
+        jButton2.setBorderPainted(false);
+        jButton2.setContentAreaFilled(false);
+        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        TopMenu.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1290, 10, 40, 40));
+
         ImagenTopMenu.setBackground(new java.awt.Color(33, 33, 33));
         ImagenTopMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Top Menu.png"))); // NOI18N
         TopMenu.add(ImagenTopMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1920, -1));
@@ -421,13 +437,14 @@ public class PaginaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton BotonTresBarrasTopMenu;
     private javax.swing.JButton BotonTresPuntos;
     private javax.swing.JButton BotonYouTubeLogo;
+    private javax.swing.JButton BotonYoutube;
     private javax.swing.JPanel Fondo;
     private javax.swing.JPanel FondoMiniaturas;
     private javax.swing.JLabel ImagenBarraLateral;
     private javax.swing.JLabel ImagenTopMenu;
     private javax.swing.JTextField TextoBuscar;
     private javax.swing.JPanel TopMenu;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JToggleButton jToggleButton10;
